@@ -1,0 +1,13 @@
+[Unit]
+Description=Check host storage, backup health and SSH access rules
+
+[Service]
+Type=oneshot
+EnvironmentFile=-/etc/swarmstudio/backup.env
+ExecStart=/usr/local/sbin/swarmstudio-host-check
+StateDirectory=swarmstudio/alerts
+StateDirectoryMode=0700
+ProtectSystem=strict
+ReadWritePaths=/var/lib/swarmstudio/alerts
+ProtectHome=true
+PrivateTmp=true

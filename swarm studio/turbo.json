@@ -1,0 +1,35 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalPassThroughEnv": ["COREPACK_ENABLE_DOWNLOAD_PROMPT"],
+  "globalDependencies": ["scripts/build-server.mjs", "tsconfig.base.json"],
+  "tasks": {
+    "generate": {
+      "cache": false
+    },
+    "build": {
+      "dependsOn": ["^build", "^generate"],
+      "env": [
+        "BETTER_AUTH_SECRET",
+        "DATABASE_URL",
+        "ENCRYPTION_KEY",
+        "GIT_SHA",
+        "PUBLIC_CRISP_WEBSITE_ID",
+        "SWARM_STUDIO_LOCAL_DEMO"
+      ],
+      "outputs": ["dist/**", "src/generated/**"]
+    },
+    "check": {
+      "dependsOn": ["^check", "^generate", "generate"]
+    },
+    "test": {
+      "dependsOn": ["^generate"],
+      "outputs": ["coverage/**"]
+    },
+    "dev": {
+      "cache": false,
+      "env": ["PUBLIC_CRISP_WEBSITE_ID", "SWARM_STUDIO_LOCAL_DEMO"],
+      "persistent": true,
+      "passThroughEnv": ["SWARM_STUDIO_HOST", "SWARM_STUDIO_DEV_HOST", "SWARM_STUDIO_ALLOWED_HOSTS"]
+    }
+  }
+}

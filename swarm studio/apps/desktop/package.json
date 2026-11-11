@@ -1,0 +1,143 @@
+{
+  "name": "@swarm-studio/desktop",
+  "productName": "Swarm Studio",
+  "version": "0.9.0",
+  "author": {
+    "name": "Swarm Studio"
+  },
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "dist/main.js",
+  "scripts": {
+    "dev": "pnpm build && electron .",
+    "build": "node scripts/build.mjs && node scripts/copy-static.mjs && node scripts/build-speech.mjs",
+    "pack": "pnpm --filter @swarm-studio/web build && pnpm build && electron-builder --mac --win --linux",
+    "pack:dir": "pnpm --filter @swarm-studio/web build && pnpm build && electron-builder --dir",
+    "check": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.jsdom.json && tsc --noEmit -p e2e/tsconfig.json && tsc --noEmit -p scripts/tsconfig.json",
+    "test": "vitest run --root ../.. apps/desktop/src",
+    "test:e2e": "pnpm build && playwright test --config e2e/playwright.config.ts",
+    "release": "pnpm --filter @swarm-studio/web build && pnpm build && electron-builder --publish never"
+  },
+  "dependencies": {
+    "@swarm-studio/contracts": "workspace:*",
+    "@swarm-studio/logging": "workspace:*",
+    "electron-updater": "6.8.12",
+    "koffi": "3.3.7"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1",
+    "@swarm-studio/adapters": "workspace:*",
+    "@swarm-studio/core": "workspace:*",
+    "@swarm-studio/ui-tokens": "workspace:*",
+    "electron": "45.2.3",
+    "electron-builder": "26.18.1",
+    "esbuild": "0.28.2",
+    "typescript": "7.0.2",
+    "vitest": "5.1.0",
+    "yaml": "2.9.1"
+  },
+  "build": {
+    "appId": "dev.swarmstudio.desktop",
+    "directories": {
+      "output": "out",
+      "buildResources": "assets"
+    },
+    "files": [
+      "dist/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "../web/dist",
+        "to": "web"
+      },
+      {
+        "from": "../../infra/compose/docker-compose.images.yml",
+        "to": "stack/docker-compose.images.yml"
+      },
+      {
+        "from": "../../infra/compose/.env.images.example",
+        "to": "stack/.env.images.example"
+      }
+    ],
+    "extraMetadata": {
+      "name": "swarmstudio",
+      "main": "dist/main.js"
+    },
+    "mac": {
+      "icon": "../../packages/ui-tokens/assets/SwarmStudio.icon",
+      "category": "public.app-category.productivity",
+      "x64ArchFiles": "{**/node_modules/@koromix/koffi-darwin-*/darwin_*/koffi.node,**/node_modules/@oxc-parser/binding-darwin-*/parser.darwin-*.node}",
+      "entitlements": "assets/entitlements.mac.plist",
+      "entitlementsInherit": "assets/entitlements.mac.plist",
+      "extendInfo": {
+        "NSMicrophoneUsageDescription": "Swarm Studio uses the microphone for dictation and voice calls with your bots.",
+        "NSSpeechRecognitionUsageDescription": "Swarm Studio turns what you say into text for dictation and voice calls with your bots."
+      },
+      "extraResources": [
+        {
+          "from": "build/speech/swarmstudio-speech",
+          "to": "speech/swarmstudio-speech"
+        },
+        {
+          "from": "assets/es.lproj",
+          "to": "es.lproj"
+        },
+        {
+          "from": "assets/pl.lproj",
+          "to": "pl.lproj"
+        }
+      ],
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "notarize": true
+    },
+    "dmg": {
+      "title": "${productName}",
+      "iconSize": 100,
+      "window": {
+        "width": 660,
+        "height": 400
+      },
+      "contents": [
+        {
+          "x": 170,
+          "y": 175,
+          "type": "file"
+        },
+        {
+          "x": 490,
+          "y": 175,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "nsis": {
+      "artifactName": "${productName}-Setup-${version}.${ext}"
+    },
+    "win": {
+      "icon": "assets/icon.ico",
+      "target": [
+        "nsis"
+      ],
+      "verifyUpdateCodeSignature": true
+    },
+    "linux": {
+      "executableName": "swarmstudio",
+      "icon": "assets/icon.png",
+      "target": [
+        "AppImage"
+      ]
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "swarm-studio-labs",
+        "repo": "swarm-studio"
+      }
+    ]
+  }
+}

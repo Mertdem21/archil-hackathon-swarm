@@ -1,0 +1,11 @@
+[Unit]
+Description=Notify operators when a production backup fails
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/swarmstudio-host-alert backup-failure "Nightly backup failed. Inspect swarmstudio-backup.service on the server."
+StateDirectory=swarmstudio/alerts
+StateDirectoryMode=0700
+ProtectSystem=strict
+ReadWritePaths=/var/lib/swarmstudio/alerts
+PrivateTmp=true

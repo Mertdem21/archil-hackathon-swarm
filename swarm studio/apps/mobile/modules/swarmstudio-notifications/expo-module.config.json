@@ -1,0 +1,10 @@
+{
+  "platforms": ["android", "apple"],
+  "android": {
+    "modules": ["com.swarmstudio.notifications.SwarmStudioNotificationsModule"]
+  },
+  "apple": {
+    "modules": ["SwarmStudioNotificationsModule"],
+    "appDelegateSubscribers": ["SwarmStudioCallsSubscriber"]
+  }
+}

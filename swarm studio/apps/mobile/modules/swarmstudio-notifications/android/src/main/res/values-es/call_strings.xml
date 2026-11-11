@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="swarmstudio_call_channel">Llamada en curso</string>
+  <string name="swarmstudio_call_title">Llamada de Swarm Studio</string>
+  <string name="swarmstudio_call_text">El micrófono está activo</string>
+  <string name="swarmstudio_call_answer">Responder</string>
+  <string name="swarmstudio_call_decline">Rechazar</string>
+</resources>

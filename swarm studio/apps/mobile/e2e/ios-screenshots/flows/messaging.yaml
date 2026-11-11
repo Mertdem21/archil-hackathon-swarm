@@ -1,0 +1,18 @@
+appId: com.swarmstudio.app
+name: Messaging
+---
+- runFlow:
+    file: ../subflows/sign-in.yaml
+    env:
+      SWARM_STUDIO_ACTIVE_EMAIL: ${SWARM_STUDIO_SCREENSHOT_EMAIL}
+- openLink: "swarmstudio:///messaging"
+- extendedWaitUntil:
+    visible: ".*#launch.*"
+    timeout: 15000
+- waitForAnimationToEnd:
+    timeout: 3000
+- takeScreenshot: 01-messaging
+- tapOn: ".*#launch.*"
+- waitForAnimationToEnd:
+    timeout: 3000
+- takeScreenshot: 02-team-conversation

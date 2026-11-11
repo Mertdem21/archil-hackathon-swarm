@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="swarmstudio_call_channel">चल रही कॉल</string>
+  <string name="swarmstudio_call_title">Swarm Studio कॉल</string>
+  <string name="swarmstudio_call_text">माइक्रोफ़ोन चालू है</string>
+  <string name="swarmstudio_call_answer">जवाब दें</string>
+  <string name="swarmstudio_call_decline">अस्वीकार करें</string>
+</resources>

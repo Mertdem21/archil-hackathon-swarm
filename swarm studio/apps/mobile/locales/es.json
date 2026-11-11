@@ -1,0 +1,10 @@
+{
+  "ios": {
+    "NSCameraUsageDescription": "Swarm Studio usa la cámara para que puedas adjuntar fotos a un mensaje para un bot.",
+    "NSPhotoLibraryUsageDescription": "Swarm Studio usa tu fototeca para que puedas adjuntar imágenes a un mensaje para un bot.",
+    "NSLocalNetworkUsageDescription": "Swarm Studio se conecta a un servidor de Swarm Studio autoalojado en tu red local.",
+    "NSMicrophoneUsageDescription": "Swarm Studio usa el micrófono para las llamadas de voz con tus bots.",
+    "NSSpeechRecognitionUsageDescription": "Swarm Studio convierte lo que dices en mensajes durante las llamadas de voz.",
+    "NSFaceIDUsageDescription": "Permite que Swarm Studio acceda a tus datos biométricos de Face ID."
+  }
+}

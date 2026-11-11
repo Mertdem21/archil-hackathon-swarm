@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="swarmstudio_call_channel">Ongoing call</string>
+  <string name="swarmstudio_call_title">Swarm Studio call</string>
+  <string name="swarmstudio_call_text">Microphone is active</string>
+  <string name="swarmstudio_call_answer">Answer</string>
+  <string name="swarmstudio_call_decline">Decline</string>
+</resources>

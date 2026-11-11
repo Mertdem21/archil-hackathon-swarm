@@ -1,0 +1,9 @@
+{
+  "platforms": ["apple", "android"],
+  "apple": {
+    "modules": ["SwarmStudioPdfViewModule"]
+  },
+  "android": {
+    "modules": ["com.swarmstudio.pdfview.SwarmStudioPdfViewModule"]
+  }
+}

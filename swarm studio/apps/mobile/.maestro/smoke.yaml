@@ -1,0 +1,52 @@
+appId: com.swarmstudio.app
+name: Swarm Studio mobile smoke
+---
+- launchApp:
+    clearState: true
+
+- assertVisible: "Sign up for Swarm Studio"
+- assertVisible: "Name"
+- tapOn: "Sign in"
+- runFlow:
+    when:
+      true: ${typeof SWARM_STUDIO_MOBILE_API_URL !== "undefined" && SWARM_STUDIO_MOBILE_API_URL != null && SWARM_STUDIO_MOBILE_API_URL.trim() !== ""}
+    file: helpers/server.yaml
+- assertVisible: "Sign in to Swarm Studio"
+- tapOn: "Email"
+- inputText: ${SWARM_STUDIO_E2E_EMAIL}
+- tapOn: "Password"
+- inputText: ${SWARM_STUDIO_E2E_PASSWORD}
+- hideKeyboard
+- tapOn: "Sign in"
+
+- extendedWaitUntil:
+    visible: "Create"
+    timeout: 30000
+- tapOn: "Create"
+- tapOn: "New bot"
+- tapOn: "Name your Bot"
+- inputText: "Smoke"
+- tapOn: "Create"
+
+- extendedWaitUntil:
+    visible: "Message…"
+    timeout: 30000
+- tapOn: "Message…"
+- inputText: ${SWARM_STUDIO_E2E_MESSAGE}
+- pressKey: Enter
+- assertVisible: ${SWARM_STUDIO_E2E_MESSAGE}
+
+- tapOn: "Bot actions"
+- tapOn: "Open computer"
+- extendedWaitUntil:
+    visible: "Open computer"
+    timeout: 30000
+- tapOn: "Open computer"
+- extendedWaitUntil:
+    visible: "You have control"
+    timeout: 90000
+- tapOn: "Close computer"
+- tapOn: "Release"
+- extendedWaitUntil:
+    visible: "Take control"
+    timeout: 30000

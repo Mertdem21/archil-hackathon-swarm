@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="swarmstudio_channel_live">סטטוס סוכנים חי</string>
+  <string name="swarmstudio_channel_messages">הודעות סוכנים</string>
+  <string name="swarmstudio_channel_scheduled">משימות מתוזמנות</string>
+  <string name="swarmstudio_channel_attention">דורש תשומת לב</string>
+
+  <string name="swarmstudio_live_one">%1$s עובד</string>
+  <string name="swarmstudio_live_many">%1$s ועוד %2$d עובדים</string>
+  <string name="swarmstudio_live_working">בעבודה</string>
+
+  <string name="swarmstudio_scheduled_title">%1$s · משימה מתוזמנת</string>
+  <string name="swarmstudio_replied_group">%1$s ענה ב-%2$s</string>
+  <string name="swarmstudio_replied">%1$s ענה</string>
+
+  <string name="swarmstudio_attention_failed">%1$s נתקל בבעיה</string>
+  <string name="swarmstudio_attention_takeover">%1$s צריך אותך מול המסך</string>
+  <string name="swarmstudio_attention_input">%1$s צריך את התגובה שלך</string>
+</resources>

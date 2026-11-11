@@ -1,0 +1,9 @@
+# Optional drop-in: /etc/systemd/system/swarmstudio-backup.service.d/alerts.conf
+[Unit]
+OnFailure=swarmstudio-backup-alert.service
+
+[Service]
+ExecStartPost=-/usr/local/sbin/swarmstudio-host-alert backup-failure ""
+ReadWritePaths=/var/lib/swarmstudio/alerts
+StateDirectory=swarmstudio/alerts
+StateDirectoryMode=0700
