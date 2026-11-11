@@ -1,0 +1,16 @@
+{
+  "name": "swarm-audit",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node --env-file=.env swarm.mjs"
+  },
+  "dependencies": {
+    "@ai-sdk/anthropic": "latest",
+    "@archildata/ai-sdk": "latest",
+    "ai": "latest",
+    "disk": "latest",
+    "zod": "latest"
+  }
+}

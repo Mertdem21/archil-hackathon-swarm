@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Swarm Audit</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root {
+    --bg: #0e0e10; --panel: #17171a; --line: #2a2a2f; --text: #ececf1; --muted: #8b8b95;
+    --high: #ff5c5c; --med: #ffb547; --low: #6cc4ff; --none: #4ade80; --run: #a78bfa;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 15px/1.45 -apple-system, BlinkMacSystemFont, "Inter", system-ui, sans-serif; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 32px 28px 60px; }
+  header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 28px; }
+  h1 { margin: 0; font-size: 30px; letter-spacing: -0.02em; }
+  .sub { color: var(--muted); margin-top: 4px; }
+  .pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px;
+          border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: 13px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--run); animation: pulse 1.2s infinite; }
+  .dot.done { background: var(--none); animation: none; }
+  @keyframes pulse { 50% { opacity: .3; } }
+  .stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 24px; }
+  .stat { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
+  .stat .v { font-size: 30px; font-weight: 650; font-variant-numeric: tabular-nums; }
+  .stat .k { color: var(--muted); font-size: 13px; }
+  .stat.alert .v { color: var(--high); }
+  .bar { height: 6px; background: var(--line); border-radius: 99px; overflow: hidden; margin-bottom: 24px; }
+  .bar > div { height: 100%; background: linear-gradient(90deg, var(--run), var(--low)); transition: width .4s; }
+  table { width: 100%; border-collapse: collapse; background: var(--panel);
+          border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 500; font-size: 13px; }
+  tr:last-child td { border-bottom: none; }
+  tr.row { cursor: pointer; }
+  tr.row:hover td { background: #1d1d21; }
+  .mono { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13.5px; }
+  .chip { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+  .chip.high { background: #ff5c5c22; color: var(--high); }
+  .chip.medium { background: #ffb54722; color: var(--med); }
+  .chip.low { background: #6cc4ff22; color: var(--low); }
+  .chip.none { background: #4ade8022; color: var(--none); }
+  .chip.running { background: #a78bfa22; color: var(--run); }
+  .chip.queued, .chip.unknown, .chip.error { background: #ffffff10; color: var(--muted); }
+  .issues { margin: 8px 0 0; padding-left: 18px; color: var(--muted); font-size: 13.5px; }
+  .muted { color: var(--muted); }
+  footer { margin-top: 18px; color: var(--muted); font-size: 13px; }
+  .lead { background: linear-gradient(135deg,#1c1530,#141c2b); border: 1px solid #3b2f63; border-radius: 14px; padding: 18px 20px; margin-bottom: 20px; }
+  .lead h2 { margin: 0 0 6px; font-size: 15px; color: var(--run); letter-spacing: .02em; text-transform: uppercase; }
+  .lead p { margin: 0 0 10px; font-size: 16px; }
+  .lead ol { margin: 0; padding-left: 20px; color: var(--muted); }
+  .lead li b { color: var(--text); }
+  .up { color: var(--none); font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Swarm Audit</h1>
+      <div class="sub">A swarm of AI agents auditing open-source packages in parallel, on one shared Archil disk.</div>
+    </div>
+    <div class="pill"><span id="dot" class="dot"></span><span id="status">Starting…</span></div>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><div class="v" id="s-running">0</div><div class="k">Agents running now</div></div>
+    <div class="stat"><div class="v" id="s-done">0</div><div class="k">Packages audited</div></div>
+    <div class="stat alert"><div class="v" id="s-risky">0</div><div class="k">High / medium risk found</div></div>
+    <div class="stat"><div class="v" id="s-bash">0</div><div class="k">Serverless bash calls (Archil)</div></div>
+    <div class="stat"><div class="v" id="s-web">0</div><div class="k">Web searches (Keenable)</div></div>
+  </div>
+
+  <div class="bar"><div id="progress" style="width:0%"></div></div>
+
+  <div id="lead" class="lead" style="display:none"></div>
+
+  <table>
+    <thead><tr><th>Package</th><th>Status</th><th>Risk</th><th>Finding</th><th>Time</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+  <footer id="foot"></footer>
+</div>
+
+<script>
+const open = new Set();
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const order = { high: 0, medium: 1, low: 2, none: 3, unknown: 4 };
+
+async function tick() {
+  let s;
+  try { s = await (await fetch("/api/state")).json(); } catch { return; }
+  const p = s.packages;
+  const done = p.filter((x) => x.status === "done" || x.status === "error").length;
+  const running = p.filter((x) => x.status === "running").length;
+  const risky = p.filter((x) => x.risk === "high" || x.risk === "medium").length;
+  document.getElementById("s-running").textContent = running;
+  document.getElementById("s-done").textContent = `${done}/${p.length}`;
+  document.getElementById("s-risky").textContent = risky;
+  document.getElementById("s-bash").textContent = s.bashCalls;
+  document.getElementById("s-web").textContent = s.webSearches;
+  document.getElementById("progress").style.width = `${(done / p.length) * 100}%`;
+  const secs = Math.round(((s.finishedAt || Date.now()) - s.startedAt) / 1000);
+  document.getElementById("status").textContent = s.finishedAt ? `Finished in ${secs}s` : `Swarm running · ${secs}s`;
+  document.getElementById("dot").className = s.finishedAt ? "dot done" : "dot";
+  document.getElementById("foot").textContent =
+    `${s.mode} · ${s.concurrency} in parallel · every bash call runs in its own microVM next to the data · ${s.osvChecks || 0} OSV.dev lookups · findings shared on one Archil disk · click a row for details`;
+
+  const L = s.lead;
+  const leadEl = document.getElementById("lead");
+  if (L && L.status) {
+    leadEl.style.display = "block";
+    leadEl.innerHTML = L.status === "running"
+      ? `<h2>Lead agent</h2><p>Reading all findings from the shared Archil disk…</p>`
+      : L.status === "done"
+        ? `<h2>Lead agent · fix plan (saved to /report.md on the Archil disk)</h2><p>${esc(L.headline)}</p><ol>${(L.fixes || []).slice(0, 6).map((f) => `<li><b>${esc(f.package)}</b> ${esc(f.from)} → <span class="up">${esc(f.to)}</span> · fixes ${f.vulns} vulnerabilit${f.vulns === 1 ? "y" : "ies"}</li>`).join("")}</ol>`
+        : `<h2>Lead agent</h2><p class="muted">${esc(L.headline)}</p>`;
+  }
+  const sorted = [...p].sort((a, b) =>
+    (a.status === "done" ? 0 : 1) - (b.status === "done" ? 0 : 1) || (order[a.risk] ?? 5) - (order[b.risk] ?? 5));
+  document.getElementById("rows").innerHTML = sorted.map((x) => {
+    const key = x.name;
+    const statusChip = `<span class="chip ${x.status === "done" ? "none" : x.status}">${x.status}</span>`;
+    const riskChip = x.risk ? `<span class="chip ${esc(x.risk)}">${esc(x.risk)}</span>` : `<span class="muted">–</span>`;
+    const issues = open.has(key) && x.issues.length
+      ? `<ul class="issues">${x.issues.map((i) => `<li><b>${esc(i.title)}</b> · ${esc(i.evidence)} <span class="muted">(${esc(i.source)})</span></li>`).join("")}</ul>` : "";
+    return `<tr class="row" onclick="toggle('${esc(key)}')">
+      <td class="mono">${esc(x.name)}@${esc(x.version)}</td>
+      <td>${statusChip}</td><td>${riskChip}</td>
+      <td>${esc(x.summary) || '<span class="muted">…</span>'}${issues}</td>
+      <td class="muted">${x.ms ? (x.ms / 1000).toFixed(1) + "s" : ""}</td></tr>`;
+  }).join("");
+}
+function toggle(k) { open.has(k) ? open.delete(k) : open.add(k); tick(); }
+tick(); setInterval(tick, 1000);
+</script>
+</body>
+</html>
