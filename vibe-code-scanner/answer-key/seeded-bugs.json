@@ -1,0 +1,155 @@
+{
+  "repo": "demo-repo",
+  "match_on": [
+    "file",
+    "class",
+    "lines (plus or minus 3, nearest target wins)"
+  ],
+  "seeded_bugs": [
+    {
+      "id": 1,
+      "checker": "security",
+      "class": "sql-injection",
+      "file": "app/db.py",
+      "line": 51,
+      "description": "f-string login query with username from the request",
+      "lines": [
+        49,
+        54
+      ]
+    },
+    {
+      "id": 2,
+      "checker": "security",
+      "class": "xss",
+      "file": "app/views.py",
+      "line": 34,
+      "description": "search term concatenated into a render_template_string template",
+      "lines": [
+        31,
+        38
+      ]
+    },
+    {
+      "id": 3,
+      "checker": "security",
+      "class": "hardcoded-secret",
+      "file": "app/config.py",
+      "line": 10,
+      "description": "hard-coded SECRET_KEY and AWS keys (lines 10-15)",
+      "lines": [
+        10,
+        15
+      ]
+    },
+    {
+      "id": 4,
+      "checker": "security",
+      "class": "command-injection",
+      "file": "app/export.py",
+      "line": 21,
+      "description": "user filename in a shell=True command",
+      "lines": [
+        21,
+        21
+      ]
+    },
+    {
+      "id": 5,
+      "checker": "package",
+      "class": "hallucinated-package",
+      "file": "requirements.txt",
+      "line": 3,
+      "description": "huggingface-cli does not exist on PyPI",
+      "lines": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": 6,
+      "checker": "package",
+      "class": "hallucinated-package",
+      "file": "requirements.txt",
+      "line": 4,
+      "description": "flask-jwt-simple-auth does not exist on PyPI",
+      "lines": [
+        4,
+        4
+      ]
+    },
+    {
+      "id": 7,
+      "checker": "package",
+      "class": "undeclared-import",
+      "file": "app/__init__.py",
+      "line": 9,
+      "description": "imports flask_shield_guard, which is not in requirements.txt and does not exist on PyPI",
+      "lines": [
+        8,
+        12
+      ]
+    },
+    {
+      "id": 8,
+      "checker": "test-cheat",
+      "class": "special-casing",
+      "file": "app/pricing.py",
+      "line": 15,
+      "description": "returns the exact test outputs for the test inputs; the 50.00 cap is never implemented",
+      "lines": [
+        15,
+        18
+      ]
+    },
+    {
+      "id": 9,
+      "checker": "test-cheat",
+      "class": "empty-test",
+      "file": "tests/test_users.py",
+      "line": 16,
+      "description": "asserts on the mock object and 'assert True' (lines 16 and 21)",
+      "lines": [
+        16,
+        21
+      ]
+    },
+    {
+      "id": 10,
+      "checker": "test-cheat",
+      "class": "duplicated-code",
+      "file": "app/users.py",
+      "line": 8,
+      "description": "copy of validate_email from app/validators.py with a weaker regex and no length check",
+      "lines": [
+        8,
+        11
+      ]
+    }
+  ],
+  "decoys": [
+    {
+      "id": "D1",
+      "class": "sql-injection",
+      "file": "app/db.py",
+      "line": 62,
+      "description": "query built from string pieces but every value uses ? placeholders",
+      "lines": [
+        62,
+        67
+      ]
+    },
+    {
+      "id": "D2",
+      "class": "command-injection",
+      "file": "app/export.py",
+      "line": 27,
+      "description": "subprocess.run with a list of arguments and a constant path",
+      "lines": [
+        27,
+        27
+      ]
+    }
+  ],
+  "verified": "PyPI returned 404 for huggingface-cli, flask-jwt-simple-auth and flask_shield_guard on 2026-11-10. Check again before the demo."
+}

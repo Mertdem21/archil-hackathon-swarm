@@ -1,0 +1,16 @@
+{"ts":"2026-11-10T20:00:00.000Z","type":"run_started","run_id":"sample","repo":"demo-todo-app","checkers":["security","package","test-cheat"]}
+{"ts":"2026-11-10T20:00:01.200Z","type":"fork_started","checker":"security","sandbox_id":"sbx-sec-01","fork_ms":1180}
+{"ts":"2026-11-10T20:00:01.350Z","type":"fork_started","checker":"package","sandbox_id":"sbx-pkg-01","fork_ms":1320}
+{"ts":"2026-11-10T20:00:01.410Z","type":"fork_started","checker":"test-cheat","sandbox_id":"sbx-tst-01","fork_ms":1390}
+{"ts":"2026-11-10T20:00:03.000Z","type":"log","checker":"security","text":"Reading app/db.py"}
+{"ts":"2026-11-10T20:00:04.100Z","type":"log","checker":"package","text":"Checking 9 dependencies against PyPI"}
+{"ts":"2026-11-10T20:00:05.500Z","type":"finding","checker":"security","file":"app/db.py","line":42,"class":"sql-injection","reason":"User input is put into the SQL string with an f-string.","evidence":"cur.execute(f\"SELECT * FROM todos WHERE owner = '{user}'\")"}
+{"ts":"2026-11-10T20:00:06.200Z","type":"log","checker":"test-cheat","text":"Comparing tests/test_math.py with app/math_utils.py"}
+{"ts":"2026-11-10T20:00:07.800Z","type":"finding","checker":"package","file":"requirements.txt","line":6,"class":"hallucinated-package","reason":"The package does not exist on PyPI.","evidence":"fastjsonschema-validator==2.1.0"}
+{"ts":"2026-11-10T20:00:09.000Z","type":"finding","checker":"test-cheat","file":"app/math_utils.py","line":12,"class":"hardcoded-test-output","reason":"The function returns the exact value the test expects for one input.","evidence":"if x == 37: return 1.618"}
+{"ts":"2026-11-10T20:00:10.400Z","type":"finding","checker":"security","file":"app/config.py","line":3,"class":"hardcoded-secret","reason":"An API key is in the source code.","evidence":"STRIPE_KEY = \"dev_session_key_...\""}
+{"ts":"2026-11-10T20:00:11.000Z","type":"finding","checker":"security","file":"app/render.py","line":20,"class":"xss","reason":"Flagged, but the value is escaped earlier (decoy).","evidence":"Markup(title)"}
+{"ts":"2026-11-10T20:00:12.300Z","type":"fork_done","checker":"package","exit_code":0,"duration_ms":10950}
+{"ts":"2026-11-10T20:00:13.100Z","type":"fork_done","checker":"test-cheat","exit_code":0,"duration_ms":11690}
+{"ts":"2026-11-10T20:00:14.000Z","type":"fork_done","checker":"security","exit_code":0,"duration_ms":12800}
+{"ts":"2026-11-10T20:00:14.500Z","type":"score","caught":4,"total":10,"false_alarms":1,"missed":["B03","B05","B06","B08","B09","B10"]}

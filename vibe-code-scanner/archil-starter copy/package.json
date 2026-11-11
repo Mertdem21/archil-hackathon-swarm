@@ -1,0 +1,21 @@
+{
+  "name": "archil-starter",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "agent": "tsx --env-file-if-exists=.env agent.ts",
+    "forks": "tsx --env-file-if-exists=.env fork-race.ts"
+  },
+  "dependencies": {
+    "@ai-sdk/anthropic": "latest",
+    "@archildata/ai-sdk": "latest",
+    "ai": "latest",
+    "disk": "latest",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "tsx": "latest",
+    "typescript": "latest"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "vibe-scanner",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "scan": "tsx --env-file-if-exists=.env src/orchestrator.ts",
+    "swarm": "tsx --env-file-if-exists=.env src/swarm/index.ts",
+    "score": "python3 -I src/scorecard.py",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@ai-sdk/anthropic": "latest",
+    "@archildata/ai-sdk": "latest",
+    "ai": "latest",
+    "disk": "latest",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "tsx": "latest",
+    "typescript": "latest"
+  }
+}
