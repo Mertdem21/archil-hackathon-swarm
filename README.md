@@ -5,12 +5,13 @@
 Every app is built on hundreds of open-source packages plus its own code. One weak spot exposes the whole app,
 and nobody has time to review it all. We built a security review for any app, run by agent swarms on **Archil**.
 
-## Two layers
+## Three parts
 
 | Layer | What it checks | How | Result |
 |---|---|---|---|
 | **1. Dependency swarm** (root: `swarm.mjs`) | every open-source package an app depends on | 16 workers fan out in parallel on one shared Archil disk, then a lead agent writes a fix plan | 16 packages in ~25 s → 13 vulnerable, 73 known CVEs |
 | **2. Vibe-code scanner** ([`vibe-code-scanner/`](vibe-code-scanner/)) | the app's own (AI-written) code | Claude agents with three roles (security, package, test-cheat), each in its own Archil sandbox fork, or sharing one Archil disk | caught 10 of 10 seeded bugs, 0 false alarms, in 3 recorded runs |
+| **3. Swarm Studio** ([`swarm studio/`](swarm%20studio/)) | the running app, end to end | QA swarms whose agents test the app in parallel in browsers, each worker in an Archil sandbox; a lead agent brings the findings back to chat; Keenable for search-enabled swarms | local agent workspace to launch and watch QA swarms |
 
 Layer 2's roles: **security** (SQL injection, XSS, hardcoded secrets, command injection), **package** (hallucinated
 packages and undeclared imports that AI assistants invent), **test-cheat** (empty tests, special-cased logic).
@@ -19,7 +20,7 @@ It runs on a demo repo with 10 seeded bugs and 2 decoys; the scorer checks findi
 ## Layer 1: result of a real run
 
 **16 packages audited in ~25 s → 13 vulnerable, 73 known vulnerabilities. Upgrading the top 3 packages fixes 46 of them.**
-Full output: [`examples/report.md`](examples/report.md) · raw data: [`examples/results.json`](examples/results.json) · video: [`examples/demo-dependency-swarm.mp4`](examples/demo-dependency-swarm.mp4)
+Full output: [`report.md`](report.md) · raw data: [`results.json`](results.json) · video: [`demo-dependency-swarm.mp4`](demo-dependency-swarm.mp4)
 
 ## How we use Archil (layer 1)
 
