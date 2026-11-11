@@ -116,6 +116,8 @@ async function tick() {
       : L.status === "done"
         ? `<h2>Lead agent · fix plan (saved to /report.md on the Archil disk)</h2><p>${esc(L.headline)}</p><ol>${(L.fixes || []).slice(0, 6).map((f) => `<li><b>${esc(f.package)}</b> ${esc(f.from)} → <span class="up">${esc(f.to)}</span> · fixes ${f.vulns} vulnerabilit${f.vulns === 1 ? "y" : "ies"}</li>`).join("")}</ol>`
         : `<h2>Lead agent</h2><p class="muted">${esc(L.headline)}</p>`;
+  } else {
+    leadEl.style.display = "none";
   }
   const sorted = [...p].sort((a, b) =>
     (a.status === "done" ? 0 : 1) - (b.status === "done" ? 0 : 1) || (order[a.risk] ?? 5) - (order[b.risk] ?? 5));

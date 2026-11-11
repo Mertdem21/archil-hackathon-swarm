@@ -1,0 +1,659 @@
+{
+  "mode": "scanner swarm",
+  "startedAt": 1794374869591,
+  "finishedAt": 1794374894636,
+  "concurrency": 16,
+  "toolCalls": 34,
+  "bashCalls": 34,
+  "webSearches": 16,
+  "packages": [
+    {
+      "name": "lodash",
+      "version": "4.17.15",
+      "status": "done",
+      "risk": "high",
+      "summary": "5 known vulnerabilities, e.g. \"Regular Expression Denial of Service (ReDoS) in lodash\". Fix: upgrade to 4.18.0.",
+      "issues": [
+        {
+          "title": "Touches __proto__ (prototype pollution surface)",
+          "evidence": "./_baseAssignValue.js ./_isKeyable.js ./_safeGet.js",
+          "source": "code"
+        },
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2020-28500",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2021-23337",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2020-8203",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2026-4800",
+          "source": "osv.dev"
+        },
+        {
+          "title": "lodash 4.17.15 | Snyk",
+          "evidence": "https://security.snyk.io/package/npm/lodash/4.17.15",
+          "source": "keenable"
+        }
+      ],
+      "steps": 0,
+      "ms": 24056,
+      "vulnCount": 5,
+      "fix": "4.18.0"
+    },
+    {
+      "name": "minimist",
+      "version": "1.2.0",
+      "status": "done",
+      "risk": "medium",
+      "summary": "2 known vulnerabilities, e.g. \"Prototype Pollution in minimist\". Fix: upgrade to 1.2.6.",
+      "issues": [
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2020-7598",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2021-44906",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Related advisory found on the web",
+          "evidence": "GHSA-VH95-RMGR-6W4M",
+          "source": "keenable"
+        },
+        {
+          "title": "Related advisory found on the web",
+          "evidence": "GHSA-6CHW-6FRG-F759",
+          "source": "keenable"
+        },
+        {
+          "title": "minimist 1.2.0 | Snyk",
+          "evidence": "https://security.snyk.io/package/npm/minimist/1.2.0",
+          "source": "keenable"
+        }
+      ],
+      "steps": 0,
+      "ms": 2174,
+      "vulnCount": 2,
+      "fix": "1.2.6"
+    },
+    {
+      "name": "axios",
+      "version": "0.21.0",
+      "status": "done",
+      "risk": "high",
+      "summary": "25 known vulnerabilities, e.g. \"axios Vulnerable to Credential Theft and Response Hijacking via Protot\". Fix: upgrade to 0.33.0.",
+      "issues": [
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2026-44495",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2025-62718",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2026-25639",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2020-28168",
+          "source": "osv.dev"
+        }
+      ],
+      "steps": 0,
+      "ms": 1860,
+      "vulnCount": 25,
+      "fix": "0.33.0"
+    },
+    {
+      "name": "jsonwebtoken",
+      "version": "8.5.1",
+      "status": "done",
+      "risk": "high",
+      "summary": "3 known vulnerabilities, e.g. \"jsonwebtoken unrestricted key type could lead to legacy keys usage \". Fix: upgrade to 9.0.0.",
+      "issues": [
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2022-23539",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2022-23541",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2022-23540",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Related advisory found on the web",
+          "evidence": "GHSA-27H2-HVPR-P74Q",
+          "source": "keenable"
+        },
+        {
+          "title": "Related advisory found on the web",
+          "evidence": "CVE-2022-23529",
+          "source": "keenable"
+        },
+        {
+          "title": "jsonwebtoken 8.5.1 | Snyk",
+          "evidence": "https://security.snyk.io/package/npm/jsonwebtoken/8.5.1",
+          "source": "keenable"
+        }
+      ],
+      "steps": 0,
+      "ms": 2135,
+      "vulnCount": 3,
+      "fix": "9.0.0"
+    },
+    {
+      "name": "handlebars",
+      "version": "4.5.0",
+      "status": "done",
+      "risk": "high",
+      "summary": "16 known vulnerabilities, e.g. \"Arbitrary Code Execution in handlebars\". Fix: upgrade to 4.7.10.",
+      "issues": [
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "GHSA-2cf5-4w76-r9qv",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2026-33916",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2026-33937",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2019-20920",
+          "source": "osv.dev"
+        }
+      ],
+      "steps": 0,
+      "ms": 2659,
+      "vulnCount": 16,
+      "fix": "4.7.10"
+    },
+    {
+      "name": "node-fetch",
+      "version": "2.6.0",
+      "status": "done",
+      "risk": "high",
+      "summary": "2 known vulnerabilities, e.g. \"node-fetch forwards secure headers to untrusted sites\". Fix: upgrade to 2.6.7.",
+      "issues": [
+        {
+          "title": "Touches __proto__ (prototype pollution surface)",
+          "evidence": "./lib/index.es.js ./lib/index.js",
+          "source": "code"
+        },
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2022-0235",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2020-15168",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Related advisory found on the web",
+          "evidence": "GHSA-W7RC-RWVF-8Q5R",
+          "source": "keenable"
+        },
+        {
+          "title": "node-fetch 2.6.0 | Snyk",
+          "evidence": "https://security.snyk.io/package/npm/node-fetch/2.6.0",
+          "source": "keenable"
+        }
+      ],
+      "steps": 0,
+      "ms": 2133,
+      "vulnCount": 2,
+      "fix": "2.6.7"
+    },
+    {
+      "name": "qs",
+      "version": "6.5.2",
+      "status": "done",
+      "risk": "high",
+      "summary": "3 known vulnerabilities, e.g. \"qs: Denial of Service via Attacker Controlled isBuffer\". Fix: upgrade to 6.16.0.",
+      "issues": [
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2026-82417",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2025-15284",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2022-24999",
+          "source": "osv.dev"
+        },
+        {
+          "title": "qs 6.5.2 | Snyk",
+          "evidence": "https://security.snyk.io/package/npm/qs/6.5.2",
+          "source": "keenable"
+        }
+      ],
+      "steps": 0,
+      "ms": 2181,
+      "vulnCount": 3,
+      "fix": "6.16.0"
+    },
+    {
+      "name": "ws",
+      "version": "7.4.5",
+      "status": "done",
+      "risk": "high",
+      "summary": "3 known vulnerabilities, e.g. \"ws affected by a DoS when handling a request with many HTTP headers\". Fix: upgrade to 7.5.11.",
+      "issues": [
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2024-37890",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2021-32640",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2026-48779",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Related advisory found on the web",
+          "evidence": "GHSA-96HV-2XVQ-FX4P",
+          "source": "keenable"
+        },
+        {
+          "title": "Related advisory found on the web",
+          "evidence": "GHSA-3H5V-Q93C-6H6Q",
+          "source": "keenable"
+        },
+        {
+          "title": "ws 7.4.5 | Snyk",
+          "evidence": "https://snyk.io/vuln/npm:ws@7.4.5",
+          "source": "keenable"
+        }
+      ],
+      "steps": 0,
+      "ms": 2177,
+      "vulnCount": 3,
+      "fix": "7.5.11"
+    },
+    {
+      "name": "moment",
+      "version": "2.29.1",
+      "status": "done",
+      "risk": "medium",
+      "summary": "2 known vulnerabilities, e.g. \"Path Traversal: 'dir/../../filename' in moment.locale\". Fix: upgrade to 2.29.4.",
+      "issues": [
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2022-24785",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2022-31129",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Related advisory found on the web",
+          "evidence": "CVE-2026-17495",
+          "source": "keenable"
+        },
+        {
+          "title": "Related advisory found on the web",
+          "evidence": "GHSA-8HFJ-J24R-96C4",
+          "source": "keenable"
+        },
+        {
+          "title": "moment 2.29.1 | Snyk",
+          "evidence": "https://security.snyk.io/package/npm/moment/2.29.1",
+          "source": "keenable"
+        }
+      ],
+      "steps": 0,
+      "ms": 9607,
+      "vulnCount": 2,
+      "fix": "2.29.4"
+    },
+    {
+      "name": "express",
+      "version": "4.16.0",
+      "status": "done",
+      "risk": "medium",
+      "summary": "2 known vulnerabilities, e.g. \"express vulnerable to XSS via response.redirect()\". Fix: upgrade to 4.20.0.",
+      "issues": [
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2024-43796",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2024-29041",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Related advisory found on the web",
+          "evidence": "GHSA-HRPP-H998-J3PP",
+          "source": "keenable"
+        },
+        {
+          "title": "Related advisory found on the web",
+          "evidence": "GHSA-MPCF-4GMH-23W8",
+          "source": "keenable"
+        },
+        {
+          "title": "express 4.16.0 | Snyk",
+          "evidence": "https://security.snyk.io/package/npm/express/4.16.0",
+          "source": "keenable"
+        }
+      ],
+      "steps": 0,
+      "ms": 2176,
+      "vulnCount": 2,
+      "fix": "4.20.0"
+    },
+    {
+      "name": "marked",
+      "version": "0.3.6",
+      "status": "done",
+      "risk": "high",
+      "summary": "5 known vulnerabilities, e.g. \"Inefficient Regular Expression Complexity in marked\". Fix: upgrade to 4.0.10.",
+      "issues": [
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2022-21681",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2017-1000427",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2018-25110",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2022-21680",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Related advisory found on the web",
+          "evidence": "GHSA-VFVF-MQQ8-RWQC",
+          "source": "keenable"
+        },
+        {
+          "title": "marked 0.3.6 | Snyk",
+          "evidence": "https://security.snyk.io/package/npm/marked/0.3.6",
+          "source": "keenable"
+        }
+      ],
+      "steps": 0,
+      "ms": 2171,
+      "vulnCount": 5,
+      "fix": "4.0.10"
+    },
+    {
+      "name": "serialize-javascript",
+      "version": "2.1.0",
+      "status": "done",
+      "risk": "high",
+      "summary": "4 known vulnerabilities, e.g. \"Serialize JavaScript is Vulnerable to RCE via RegExp.flags and Date.pr\". Fix: upgrade to 7.1.3.",
+      "issues": [
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "GHSA-5c6j-r48x-rmvq",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2019-16769",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2020-7660",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2026-115754",
+          "source": "osv.dev"
+        },
+        {
+          "title": "Related advisory found on the web",
+          "evidence": "CVE-2026-115897",
+          "source": "keenable"
+        },
+        {
+          "title": "Related advisory found on the web",
+          "evidence": "GHSA-H9RV-JMMF-4PGX",
+          "source": "keenable"
+        },
+        {
+          "title": "serialize-javascript 2.1.0 | Snyk",
+          "evidence": "https://security.snyk.io/package/npm/serialize-javascript/2.1.0",
+          "source": "keenable"
+        }
+      ],
+      "steps": 0,
+      "ms": 2174,
+      "vulnCount": 4,
+      "fix": "7.1.3"
+    },
+    {
+      "name": "chalk",
+      "version": "5.3.0",
+      "status": "done",
+      "risk": "none",
+      "summary": "Clean: no known vulnerabilities, no risky patterns in 5 JS files.",
+      "issues": [
+        {
+          "title": "Web mentions advisories for OTHER versions; this version is not affected per OSV",
+          "evidence": "CVE-2026-41889, GHSA-CM5X-2764-C8P9",
+          "source": "keenable"
+        },
+        {
+          "title": "chalk 5.3.0 | Snyk",
+          "evidence": "https://security.snyk.io/package/npm/chalk/5.3.0",
+          "source": "keenable"
+        }
+      ],
+      "steps": 0,
+      "ms": 2180,
+      "vulnCount": 0,
+      "fix": null
+    },
+    {
+      "name": "uuid",
+      "version": "9.0.1",
+      "status": "done",
+      "risk": "medium",
+      "summary": "1 known vulnerability, e.g. \"uuid: Missing buffer bounds check in v3/v5/v6 when buf is provided\". Fix: upgrade to 11.1.1.",
+      "issues": [
+        {
+          "title": "Known vulnerability in this version",
+          "evidence": "CVE-2026-41907",
+          "source": "osv.dev"
+        }
+      ],
+      "steps": 0,
+      "ms": 2422,
+      "vulnCount": 1,
+      "fix": "11.1.1"
+    },
+    {
+      "name": "dayjs",
+      "version": "1.11.10",
+      "status": "done",
+      "risk": "none",
+      "summary": "Clean: no known vulnerabilities, no risky patterns in 363 JS files.",
+      "issues": [],
+      "steps": 0,
+      "ms": 7532,
+      "vulnCount": 0,
+      "fix": null
+    },
+    {
+      "name": "debug",
+      "version": "4.3.4",
+      "status": "done",
+      "risk": "none",
+      "summary": "Clean: no known vulnerabilities, no risky patterns in 4 JS files.",
+      "issues": [
+        {
+          "title": "Web mentions advisories for OTHER versions; this version is not affected per OSV",
+          "evidence": "CVE-2025-59144",
+          "source": "keenable"
+        },
+        {
+          "title": "OSV - Open Source Vulnerabilities",
+          "evidence": "https://osv.dev/vulnerability/CVE-2025-59144",
+          "source": "keenable"
+        }
+      ],
+      "steps": 0,
+      "ms": 2096,
+      "vulnCount": 0,
+      "fix": null
+    }
+  ],
+  "osvChecks": 16,
+  "lead": {
+    "status": "done",
+    "audited": 16,
+    "vulnerable": 13,
+    "totalVulns": 73,
+    "fixes": [
+      {
+        "package": "axios",
+        "from": "0.21.0",
+        "to": "0.33.0",
+        "vulns": 25,
+        "risk": "high"
+      },
+      {
+        "package": "handlebars",
+        "from": "4.5.0",
+        "to": "4.7.10",
+        "vulns": 16,
+        "risk": "high"
+      },
+      {
+        "package": "lodash",
+        "from": "4.17.15",
+        "to": "4.18.0",
+        "vulns": 5,
+        "risk": "high"
+      },
+      {
+        "package": "marked",
+        "from": "0.3.6",
+        "to": "4.0.10",
+        "vulns": 5,
+        "risk": "high"
+      },
+      {
+        "package": "serialize-javascript",
+        "from": "2.1.0",
+        "to": "7.1.3",
+        "vulns": 4,
+        "risk": "high"
+      },
+      {
+        "package": "jsonwebtoken",
+        "from": "8.5.1",
+        "to": "9.0.0",
+        "vulns": 3,
+        "risk": "high"
+      },
+      {
+        "package": "qs",
+        "from": "6.5.2",
+        "to": "6.16.0",
+        "vulns": 3,
+        "risk": "high"
+      },
+      {
+        "package": "ws",
+        "from": "7.4.5",
+        "to": "7.5.11",
+        "vulns": 3,
+        "risk": "high"
+      },
+      {
+        "package": "express",
+        "from": "4.16.0",
+        "to": "4.20.0",
+        "vulns": 2,
+        "risk": "medium"
+      },
+      {
+        "package": "minimist",
+        "from": "1.2.0",
+        "to": "1.2.6",
+        "vulns": 2,
+        "risk": "medium"
+      },
+      {
+        "package": "moment",
+        "from": "2.29.1",
+        "to": "2.29.4",
+        "vulns": 2,
+        "risk": "medium"
+      },
+      {
+        "package": "node-fetch",
+        "from": "2.6.0",
+        "to": "2.6.7",
+        "vulns": 2,
+        "risk": "high"
+      },
+      {
+        "package": "uuid",
+        "from": "9.0.1",
+        "to": "11.1.1",
+        "vulns": 1,
+        "risk": "medium"
+      }
+    ],
+    "headline": "Read 16 findings from the shared Archil disk: 13 vulnerable packages, 73 known vulnerabilities. Upgrading the top 3 packages fixes 46 of them."
+  }
+}
